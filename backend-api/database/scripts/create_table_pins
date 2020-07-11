@@ -1,0 +1,13 @@
+
+create table pins
+(
+    id int auto_increment,
+    name varchar(255) null,
+    image_url varchar(255) null,
+    description text null,
+    created_at datetime null,
+    updated_at datetime null,
+    user_id int null,
+    type char null,
+    constraint table_name_pk primary key (id)
+);
