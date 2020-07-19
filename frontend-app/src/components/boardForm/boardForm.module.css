@@ -1,0 +1,27 @@
+.__container{
+    background: lightgrey;
+    padding: 30px;
+    margin: 200px;
+    margin-top: 50px;
+    border-radius: 15px;
+}
+.__form__label{
+    font-weight: bold;
+}
+
+/* TODO Jaume styles - Bootstrap override style */
+
+.btn-primary,
+.btn-primary:active,
+.btn-primary:visited {
+    background-color: #8064A2 !important;
+}
+
+.btn-primary:hover {
+    background-color: #594671 !important;
+    transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+}

@@ -1,0 +1,36 @@
+{
+    "host": "127.0.0.1",
+    "port": "3306",
+    "user": "root",
+    "database": "laravel",
+    "table": "boards",
+    "mockStartIndex": "auto",
+    "mockCount": 2,
+    "examples": "http://mockjs.com/examples.html#DPD",
+    "mock": {
+        "id": {
+            "type": "bigint",
+            "value": "$mockIndex"
+        },
+        "name": {
+            "type": "varchar",
+            "value": "Board name @integer(1,100)"
+        },
+        "description": {
+            "type": "varchar",
+            "value": "Board description @string('lower',5)"
+        },
+        "created_at": {
+            "type": "timestamp",
+            "value": "@now()"
+        },
+        "updated_at": {
+            "type": "timestamp",
+            "value": "@now()"
+        },
+        "user_id": {
+            "type": "bigint",
+            "value": "@integer(1,6)"
+        }
+    }
+}

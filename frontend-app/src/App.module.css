@@ -1,0 +1,73 @@
+/* ---------------------- */
+/* ---- NAVBAR ITEMS ---- */
+/* ---------------------- */
+
+/* TODO navBarSimple needs to be fixed, sticky */
+/* TODO SOURCE: https://www.w3schools.com/howto/howto_js_navbar_sticky.asp */
+
+
+/* SOURCE CSS NavBar: https://codepen.io/doytch/pen/Kyypba */
+
+
+.__navbar {
+  display: flex;
+  align-items: center;
+  /* position: fixed; */         /* TUTORIA sticky navbar */
+  background: white;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  padding: 15px 20px 15px 20px;
+  margin-bottom: 20px;
+}
+
+.__navbar__logo {
+  margin-right: auto;
+}
+
+.__navbar__item {
+  height: 30px;
+  font-weight: bold;
+  margin: 0 10px;
+  cursor: pointer;
+  vertical-align: middle;
+  text-decoration: none;
+  border-radius: 95px;
+  background: white;
+}
+
+.__navbar__item a{
+  text-decoration: none;
+  color: black;
+  display: block;
+  padding: 6px 10px 10px 10px;  
+}
+
+.__navbar__item .active,
+.__navbar__item a:hover{
+  height: 30px;
+  text-decoration: none;
+  border-radius: 95px;
+  background:#ededed;
+  color: black;
+}
+
+
+
+/* ---------------------- */
+/* REVIEW - UNUSED CSS -- */
+/* ---------------------- */
+
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: DodgerBlue;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  width: 100px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+}

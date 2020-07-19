@@ -1,0 +1,40 @@
+{
+    "host": "127.0.0.1",
+    "port": "3306",
+    "user": "root",
+    "database": "laravel",
+    "table": "pins",
+    "mockStartIndex": "auto",
+    "mockCount": 2,
+    "examples": "http://mockjs.com/examples.html#DPD",
+    "mock": {
+        "id": {
+            "type": "bigint",
+            "value": "$mockIndex"
+        },
+        "note": {
+            "type": "varchar",
+            "value": "Note @integer(1,1000)"
+        },
+        "description": {
+            "type": "varchar",
+            "value": "Color @string('lower',5)"
+        },
+        "media_url": {
+            "type": "varchar",
+            "value": "@string('lower',5)"
+        },
+        "created_at": {
+            "type": "timestamp",
+            "value": "@now()"
+        },
+        "updated_at": {
+            "type": "timestamp",
+            "value": "@now()"
+        },
+        "board_id": {
+            "type": "bigint",
+            "value": "@integer(19,20)"
+        }
+    }
+}

@@ -1,0 +1,43 @@
+
+/* REVIEW - DO IF NEEDED - Adding clear text functionality to search bar:
+** https://www.mikedane.com/web-development/css/styling-search-bar/
+*/
+
+.__navbar__search__wrapper {
+  position: relative;
+  display: flex;
+  min-width: 100px;
+}
+
+.__navbar__search__icon {
+  position: absolute;
+  top: 10px;
+  left: 22px;
+  width: 10px;
+}
+
+.__navbar__clear__icon {
+  position: absolute;
+  top: 10px;
+  right: 22px;
+  width: 8px;
+  cursor: pointer;
+}
+
+.__navbar__search__bar {
+  border: 0.5px solid #ededed;
+  border-radius: 15px;
+  height: 30px;
+  width: 400px;
+  padding: 2px 23px 2px 30px;
+  margin: 0 10px;
+  outline: 0;
+  background-color: #f5f5f5;
+}
+
+.__navbar__search__bar:hover,
+.__navbar__search__bar:focus {
+  border: 0.5px solid lightgrey;
+  background:#ededed;
+
+}
