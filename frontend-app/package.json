@@ -3,9 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@opuscapita/react-responsive-navbar": "^3.4.0",
+    "bootstrap": "^4.5.0",
+    "classnames": "^2.2.6",
     "react": "^16.10.1",
+    "react-bootstrap": "^1.2.2",
     "react-dom": "^16.10.1",
-    "react-scripts": "3.2.0"
+    "react-masonry-css": "^1.0.14",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^3.4.1"
   },
   "scripts": {
     "start": "react-scripts start",

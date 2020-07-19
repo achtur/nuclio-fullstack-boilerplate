@@ -1,5 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import styles from './pinForm.module.css';
+import React, { useState, useEffect} from 'react';
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Form'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import styles from "./pinForm.module.css";
+import {getToken, setJWT} from "../../utils/localStorage.utils";
+
+
+const baseUrl = 'http://localhost/api';
+
 
 const PinForm = () => {
 
@@ -8,61 +16,6 @@ const PinForm = () => {
     const [boardId, setBoardId] = useState();
     const [boards, setBoards] = useState([]);
     const [success, setSuccess] = useState('false');
-
-    const submitForm = () => {
-        const url = 'http://localhost/api/pins';
-        const body = {
-            note: note,
-            media_url: mediaUrl,
-            board_id: boardId,
-        };
-        const options = {
-            method: 'POST',
-            headers: new Headers({
-                'Content-type': 'application/json'
-            }),
-            mode: 'cors',
-            body: JSON.stringify(body),
-        };
-
-        fetch(url, options) // TODO falla aqui!
-            .then(response => {
-                if (response.status === 200 ||
-                    response.status === 201) {
-                    return response.json();
-                }
-                return Promise.reject(response.status);
-            })
-            .then(payload => {
-                setSuccess('Your data has been submitted');
-                console.log("Data from pin form sent to DB");
-            })
-            .catch(error => console.log(error));
-    };
-
-    useEffect(() => {
-        const url = 'http://localhost/api/boards';
-        const options = {
-            method: 'GET',
-            headers: new Headers(),
-            mode: 'cors',
-        };
-
-        fetch(url, options)
-            .then(response => {
-                    if (response.status >= 200 || response.status < 300) {
-                        return response.json();
-                    }
-                    return Promise.reject(response.status);
-                }
-            )
-            .then(payload => {
-                    console.log("Board data from DB loaded");
-                    setBoards(payload);
-                }
-            )
-            .catch(error => console.log(error));
-    }, []);
 
     const handleChangeNote = (event) => {
         setNote(event.target.value);
@@ -74,30 +27,126 @@ const PinForm = () => {
         setBoardId(event.target.value);
     }
 
-    return (
-        <div className={styles.__container}>
-            <p style={{fontWeight: "bold"}}>PIN FORM</p>
+    const submitForm = () => {
+        const url = `${baseUrl}/pins`;
+        const body = {
+            note: note,
+            media_url: mediaUrl,
+            board_id: boardId,
+        };
+       // const myToken = getToken(); // TODO fetch ME
+        const options = {
+            method: 'POST',
+            headers: new Headers({
+                'Content-type': 'application/json',
+              //  'authorization': `Bearer ${myToken.access_token}` // TODO fetch ME
+            }),
+            mode: 'cors',
+            body: JSON.stringify(body),
+        };
 
-            <label htmlFor="note-form">Note</label>  {/* label "for" instead of "htmlFor"? */}
-            <input id="note-form" type={"text"} value={note} onChange={handleChangeNote} />   {/* same as "onChange={e => setNote(e.target.value)" */}
+        console.log(body) 
+        console.log("-------")
+        console.log(options) 
+        //debugger;
 
-            <label htmlFor="media-form">Media url</label>
-            <input id="media-form" type={"text"} value={mediaUrl} onChange={handleChangeMediaUrl}/>
-
-            <label htmlFor="boardName-form">Board name</label>
-            <select value={boardId} onChange={handleChangeBoardId}>
-                {
-                    boards.map((board) => {
-                        return (<option key={'board-select' + board.id} value={board.id}>{board.name}</option>)
-                    })
+        fetch(url, options)
+            .then(response => {
+                if (response.status === 200 ||
+                    response.status === 201) {
+                    return response.json();
                 }
-            </select>
+                return Promise.reject(response.status);
+            })
+            .then(payload => {
+                // setJWT(payload.access_token) // TODO LOGIN
+                setSuccess('Your data has been submitted');
+                console.log("Data from pin form sent to DB =>", payload);
+            })
+            .catch(error => console.log(error));
+    };
 
-            <input type={"button"} value={"Submit"} onClick={submitForm} />
+    useEffect(() => {
+        const url = `${baseUrl}/boards`;
+        const options = {
+            method: 'GET',
+            headers: new Headers(),
+            mode: 'cors',
+        };
+
+        fetch(url, options)
+            .then(response => {
+                if (response.status >= 200 || response.status < 300) {
+                    return response.json();
+                }
+                return Promise.reject(response.status);
+            })
+            .then(payload => {
+                console.log("Board data from DB loaded");
+                setBoards(payload);
+            })
+            .catch(error => console.log(error));
+    }, []);
+
+    return (
+        // <div className="form-group">
+
+        <div className = {styles.__container}>
+
+            <p className={styles.__form__label}>CREATE PIN</p>
+
+            {
+                /* No clue what this is for --- // TODO: Colt Steele Bootstrap */ 
+                /* SOURCE: https://react-bootstrap.github.io/getting-started/introduction */
+            }
+
+            <link
+            rel = "stylesheet"
+            href = "https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+            integrity = "sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+            crossOrigin = "anonymous"
+            />
+
+            {
+                /* SOURCE: https://react-bootstrap.github.io/components/forms/ */
+            }
+
+            <Form>
+                <Form.Group controlId = "formGridPinNote">
+                    <Form.Label className = {styles.__form__label}>Note</Form.Label>
+                    <Form.Control placeholder = "Your Note Here" onChange = {handleChangeNote} />
+                </Form.Group>
+
+                <Form.Group controlId = "formGridPinMediaUrl">
+                    <Form.Label className = {styles.__form__label}>Media Url</Form.Label>
+                    <Form.Control placeholder = "Your Media Url Here" onChange = {handleChangeMediaUrl}/>
+                </Form.Group>
+
+                <Form.Group controlId = "formGridPinBoardName" >
+                    <Form.Label className = {styles.__form__label}>Board Name</Form.Label>
+                    <Form.Control as = "select" defaultValue = "Choose a board name..." onChange = {handleChangeBoardId}>
+                        {
+                            /*
+                            <option>Choose a board name...</option> // ASK Default value?
+                            */
+                        }
+
+                        {
+                            boards.map((board) => {
+                                return ( <option key = {'board-select' + board.id} value = {board.id}> {board.name} </option>)
+                            })
+                        }
+                    </Form.Control>
+                </Form.Group>
+
+                <Button className = "btn btn-primary" variant = "primary" type = "submit" onClick = {submitForm}>Submit</Button>
+                
+            </Form>
 
             <p>{success}</p>
+
         </div>
-    );
+    )
 }
 
-export default PinForm;
+        export default PinForm;

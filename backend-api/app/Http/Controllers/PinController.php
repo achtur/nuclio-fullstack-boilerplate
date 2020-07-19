@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Board;
 use App\Pin;
+use Exception;
 use Validator;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -31,7 +33,7 @@ class PinController extends Controller
      */
     public function getById($id)
     {
-        Log::info('Retrieving pin profile for pin with id: '.$id);
+        Log::info('Retrieving pin with id: '.$id);
         $pin = Pin::findOrFail($id);
         return response()->json($pin);
     }
@@ -42,10 +44,32 @@ class PinController extends Controller
      * @param $boardId
      * @return JsonResponse
      */
-    public function GetByBoard($boardId)
+    public function getByBoard($boardId)
     {
         Log::info('Retrieving pins with board id: ' . $boardId);
         $pins = Pin::where('board_id', $boardId)->get();
+        return response()->json($pins);
+    }
+
+    /**
+     * Show a list of all of the pins matching the search.
+     *
+     * @param $query
+     * @return JsonResponse
+     */
+    public function search($query)
+    {
+        Log::info('Retrieving all pins related to ->' .$query);
+        $pins = Pin::where('note', 'LIKE', '%' . $query . '%')
+            ->orWhere('description', 'LIKE', '%' . $query . '%')->get();
+        // Same as:
+        // $pins = DB::select('
+        // SELECT * FROM pins
+        // WHERE note LIKE ''
+        // OR description LIKE '%green%'
+        // ');
+
+        Log::info('Retrieving query ->' . $pins);
         return response()->json($pins);
     }
 
@@ -63,9 +87,10 @@ class PinController extends Controller
          * luego lo valida
          */
 
-        $pinValidator = Validator::make($request->all(), [
+        $body = $request->all();
+        $pinValidator = Validator::make($body, [
             'note' => ['required', 'string', 'max:255'],
-            'media_url' => ['required', 'url'],
+            'media_url' => ['required', 'string'],
             'board_id' => ['required', 'integer'],
         ]);
 
@@ -75,15 +100,23 @@ class PinController extends Controller
             return response()->json(['error' => $errors, 'code' => $code], $code);
         }
 
-        $pin = Pin::create([
-            'note' => $request->note,
-            'color' => $request->color,
-            'media_url' => $request->media_url,
-            'board_id' => $request->board_id,
-        ]);
+        try {
+            $board = Board::where('id', $request->board_id)->firstOrFail();
+            $pin = Pin::create([
+                'note' => $request->note,
+                'description' => $request->description,
+                'media_url' => $request->media_url,
+                'board_id' => $board->id,
+            ]);
 
-        $pin->save();
-        return response()->json(["Pin created", $pin], 201);
+            /** Después de crear el pin board, lo guarda en la DB */
+            $pin->save();
+            return response()->json(["Pin created and saved", $pin], 201);
+
+        } catch (Exception $e) {
+            $code = Response::HTTP_NOT_ACCEPTABLE;
+            return response()->json(['error' => 'Board Id does not exist', 'code' => $code], $code);
+        }
     }
 
     /**

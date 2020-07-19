@@ -1,0 +1,175 @@
+
+  .row {
+    padding: 2px 2px 4px 2px;
+    border-bottom: 1px solid #eee;
+    background-color:pink;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    top: 0px;
+}
+.logopin {
+  fill: red;
+  width: 3em;
+  margin: 3px 5px;
+  -webkit-transform: translate(0px, 2px);
+  transform: translate(0px, 2px);
+  transition: .2s ease;
+}
+.icons {
+  fill: #2196f3;
+  stroke:#ffffff;
+  width: 2.3em;
+  -webkit-transform: translate(0px, 8px);
+  transform: translate(0px, 8px);
+  transition: .2s ease;
+}
+.threedot {
+  fill: #2196f3;
+  stroke:#ffffff;
+  width: 2.3em;
+  -webkit-transform: translate(0px, 8px);
+  transform: translate(0px, 8px);
+  transition: .2s ease;
+}
+.srchicon {
+  fill:#ffffff;
+  stroke:#ffffff;
+  width: 2.3em;
+  height: 2.3em;
+  stroke:#ffffff;
+}
+@media screen and (max-width: 600px) {
+  .icons,.threedot {
+    display: block;
+    margin: 3px 1em;
+  }
+  .form-inline {
+    display: none;
+  }
+}
+@media screen and (max-width: 1199px) and (min-width: 601px){
+  .icons,.threedot {
+    display: block;
+    margin: 3px 1.4em;
+  }
+  .srch {
+    display: none;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .icons,.threedot {
+    display: block;
+    margin: 3px 2em;
+  }
+  .srch {
+    display: none;
+  }
+}
+.form_container { display: flex;}
+.total-results {display:inline-block; }
+@media(max-width:360px) {
+  .total-results { display:block; }
+}
+.form-inline {
+  padding: 5px;
+  width: 100%;
+}
+
+button {
+    fill: red;
+    border: none;
+    background-color:green;
+    outline: none;
+    padding: 0.5em 0.5em;
+    display: inline-block;
+    /*
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    */
+}
+
+/*
+button:hover {
+  background: #2196f3;
+}
+button:focus {
+  background: #002c73;
+}
+*/
+
+.search-field {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  border: 4px;
+  outline: none;
+  background: rgba(218, 218, 218, 0.4);
+  height: 48px;
+  padding: 12px;
+  color: #000;
+  font-size: 1.1em;
+}
+* {
+margin:0;
+padding:0;
+}
+
+
+
+
+/* Search bar */
+/* https://codepen.io/huange/pen/rbqsD */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body{
+  background: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #00B4CC;
+  border-right: none;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: #00B4CC;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid #00B4CC;
+  background: #00B4CC;
+  text-align: center;
+  color: red;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

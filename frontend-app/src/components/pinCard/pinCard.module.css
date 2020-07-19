@@ -3,27 +3,36 @@
     flex-direction: column;
     align-content: center;
     justify-content: center;
-    width: 236px;
-    margin: 18px;
+    width: auto;
+    font-family: 'Montserrat', sans-serif;
+    margin: -5px -5px -5px -5px;
 }
 
 .__image {
     width: 100%;
-    border-radius: 16px;
+    border-radius: 25px;
 }
 
 .__pinName {
-    padding: 0 6px;
+    background-color: #ededed;
+    padding: 6px 6px 6px 6px;
     margin: 6px 0;
-    color: #111;
+    border-radius: 25px;
+
+    color: black;
+    font-weight: 500;
     font-size: 14px;
-    font-weight: 700;
+    text-align: center;
 }
 
 .__pinDescription {
-    padding: 0 6px;
-    color: #212121;
-    font-size: 14px;
+    background-color: white;
+    border-radius: 25px;
+    padding: 0px 6px 6px 6px;
+
+    color: grey;
+    font-size: 11px;
+    text-align: center;
 }
 
 .__image__container {

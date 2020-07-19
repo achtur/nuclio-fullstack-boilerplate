@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Response;
-use Validator;
 use App\Board;
+use App\User;
+use Exception;
+use Validator;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 
 class BoardController extends Controller
@@ -19,7 +21,8 @@ class BoardController extends Controller
     public function all()
     {
         Log::info('Retrieving all boards with corresponding pins');
-        return response()->json(Board::with('pins')->get());
+        $boards = Board::with('pins')->get();
+        return response()->json($boards);
     }
 
     /**
@@ -31,7 +34,8 @@ class BoardController extends Controller
     public function getById($id)
     {
         Log::info('Retrieving board with id: '.$id);
-        return response()->json(Board::findOrFail($id));
+        $board = Board::findOrFail($id);
+        return response()->json($board);
     }
 
     /**
@@ -44,6 +48,28 @@ class BoardController extends Controller
     {
         Log::info('Retrieving boards with user id: '.$userId);
         $boards = Board::where('user_id', $userId)->get();
+        return response()->json($boards);
+    }
+
+    /**
+     * Show a list of all of the boards matching the search.
+     *
+     * @param $query
+     * @return JsonResponse
+     */
+    public function search($query)
+    {
+        Log::info('Retrieving all boards related to ->' .$query);
+        $boards = Board::where('name', 'LIKE', '%' . $query . '%')
+            ->orWhere('description', 'LIKE', '%' . $query . '%')->get();
+        // Same as:
+        // $boards = DB::select('
+        // SELECT * FROM boards
+        // WHERE name LIKE ''
+        // OR description LIKE '%green%'
+        // ');
+
+        Log::info('Retrieving query ->' . $boards);
         return response()->json($boards);
     }
 
@@ -74,15 +100,23 @@ class BoardController extends Controller
             return response()->json(['error' => $errors, 'code' => $code], $code);
         }
 
-        $board = Board::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'user_id' => $request->user_id,
-        ]);
+        try {
+            $user = User::where('id', $request->user_id)->firstOrFail();
+            $board = Board::create([
+                'name' => $request->name,
+                'description' => $request->description,
+                'user_id' => $user->id,
+            ]);
 
-        /** Después de crear la board, la guarda en la DB */
-        $board->save();
-        return response()->json(["Board created", $board], 201);
+            /** Después de crear la board, la guarda en la DB */
+            $board->save();
+            return response()->json(["Board created and saved", $board], 201);
+
+
+        } catch (Exception $e) {
+            $code = Response::HTTP_NOT_ACCEPTABLE;
+            return response()->json(['error' => 'User Id does not exist', 'code' => $code], $code);
+        }
     }
 
     /**

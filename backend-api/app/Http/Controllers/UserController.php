@@ -97,7 +97,7 @@ class UserController extends Controller
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'bio' => $request->bio,
-            'password' => $request->password, // TODO preguntar si hauria d'estar aquí o no
+            'password' => bcrypt($request->password),
         ]);
 
         $user->save();

@@ -14,6 +14,8 @@
   top: 10px;
   left: 22px;
   width: 10px;
+
+  float: right; /* FIXME - Searchbar - Test: Mirar què fa això */
 }
 
 .__navbar__clear__icon {

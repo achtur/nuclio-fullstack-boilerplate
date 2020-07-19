@@ -21,6 +21,6 @@ class Pin extends Model
      * @var array
      */
     protected $fillable = [
-        'note', 'color', 'media_url', 'board_id'
+        'note', 'description', 'media_url', 'board_id'
     ];
 }

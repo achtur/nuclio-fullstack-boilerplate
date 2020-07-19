@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Form'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import styles from "./boardForm.module.css";
 
+
+const baseUrl = 'http://localhost/api';
 
 const BoardForm = () => {
 
@@ -19,7 +25,7 @@ const BoardForm = () => {
     }
 
     const submitForm = () => {
-        const url = 'http://localhost/api/boards';
+        const url = `${baseUrl}/boards`;
         const body = {
             name: name,
             description: description,
@@ -34,6 +40,8 @@ const BoardForm = () => {
             body: JSON.stringify(body),
         };
 
+        console.log(options.body)
+
         fetch(url, options)
             .then(response => {
                 if (response.status === 200 ||
@@ -44,21 +52,65 @@ const BoardForm = () => {
             })
             .then(payload => {
                 setSuccess('Your data has been submitted');
-                console.log("Data from board form loaded");
+                console.log("Data from board form sent to DB =>", payload);
             })
             .catch(error => console.log(error));
     };
 
     return (
-        <div>
-            <p style={{fontWeight: "bold"}}>BOARD FORM</p>
-            <p>Name</p><input type="text" value={name} onChange={handleChangeName} />
-            <p>Description</p><input type="text" value={description} onChange={handleChangeDescription} />
-            <p>User Id</p><input type="text" value={userId} onChange={handleChangeUserId} />
-            <p><input type="button" value="Submit" onClick={submitForm} /></p>
+        // <div className="form-group">
+
+        <div className={styles.__container}>
+
+            <p className={styles.__form__title}>CREATE BOARD</p>
+
+            {/* No clue what this is for // TODO: Colt Steele Bootstrap */ 
+                /* SOURCE: https://react-bootstrap.github.io/getting-started/introduction */}
+
+            <link
+                rel="stylesheet"
+                href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+                integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+                crossOrigin="anonymous"
+            />
+
+            {/* SOURCE: https://react-bootstrap.github.io/components/forms/ */}
+
+            <Form>
+                <Form.Group controlId="formGridBoardName">
+                    <Form.Label className={styles.__form__label}>Board Name</Form.Label>
+                    <Form.Control placeholder="Your Board Name Here" onChange={handleChangeName}/>
+                </Form.Group>
+
+                <Form.Group controlId="formGridBoardDescription">
+                    <Form.Label className={styles.__form__label}>Board Description</Form.Label>
+                    <Form.Control placeholder="Your Board Description Here" onChange={handleChangeDescription}/>
+                </Form.Group>
+
+                <Form.Group controlId="formGridBoardUserId">
+                    <Form.Label className={styles.__form__label}>User Id</Form.Label>
+                    <Form.Control placeholder="Your User Id Here" onChange={handleChangeUserId}/>
+                </Form.Group>
+
+                {/* <Form.Group controlId="formGridUserId">
+                    <Form.Label className={styles.__form__label}>User Id</Form.Label>
+                    <Form.Control as="select" defaultValue="Choose..." onChange={handleChangeUserId}>
+                        <option>Choose your User Id...</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </Form.Control>
+                </Form.Group> // TODO - Dropdown Select User Id */}
+
+                <Button className="btn btn-primary" variant="primary" type="submit" onClick={submitForm} >
+                    Submit
+                </Button>
+            </Form>
+
             <p>{success}</p>
+
         </div>
-    );
+    )
 }
 
 export default BoardForm;

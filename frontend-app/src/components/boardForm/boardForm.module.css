@@ -1,15 +1,23 @@
 .__container{
-    background: lightgrey;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    background: #ededed;
     padding: 30px;
-    margin: 200px;
-    margin-top: 50px;
+    margin: 50px 200px 50px 200px;
     border-radius: 15px;
 }
+
+.__form__title{
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+}
+
 .__form__label{
     font-weight: bold;
 }
 
-/* TODO Jaume styles - Bootstrap override style */
+/* TODO: Jaume styles - Bootstrap override style */
 
 .btn-primary,
 .btn-primary:active,

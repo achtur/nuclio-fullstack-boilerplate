@@ -39,13 +39,36 @@ class Handler extends ExceptionHandler
 
     /**
      * Render an exception into an HTTP response.
+     * Source: https://www.it-swarm.dev/es/php/como-mostrar-500-paginas-de-error-del-servidor-interno-en-laravel-5.2/828938188/
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
+
+    public function render($request, Exception $e)
+    {
+
+        // 404 page when a model is not found
+        if ($e instanceof ModelNotFoundException) {
+            return response()->view('errors.404', [], 404);
+        }
+
+        // custom error message
+        if ($e instanceof \ErrorException) {
+            return response()->view('errors.500', [], 500);
+        } else {
+            return parent::render($request, $e);
+        }
+
+        return parent::render($request, $e);
+    }
+
+    /* WHAT WAS HERE BEFORE:
+
     public function render($request, Exception $exception)
     {
         return parent::render($request, $exception);
     }
+    */
 }

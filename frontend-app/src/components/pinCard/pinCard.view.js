@@ -1,10 +1,9 @@
+import PropTypes from 'prop-types'; // para meterle tipos a JS
 import React, { useState } from 'react';
-import styles from './pinCard.module.css';     // lo de "module" es un standard de poner nombres, pero hay muchos standards
-import PropTypes from 'prop-types';     // para meterle tipos a JS
+import styles from './pinCard.module.css';
 import PinCardActionsView from "./pinCardActions/pinCardActions.view";
 
-const PinCard = ({image_url, name}) => {
-    // Hooks - por def no hay nada - setIsHovered es un setter
+const PinCard = ({description, image_url, name}) => {
     const [isHovered, setIsHovered] = useState(false);
     return (
         <div
@@ -17,13 +16,13 @@ const PinCard = ({image_url, name}) => {
                 {isHovered && <PinCardActionsView />}
             </div>
             <span className={styles.__pinName}>{name}</span>
-
-
+            <span className={styles.__pinDescription}>{description}</span>
         </div>
     )
 }
 
 PinCard.propTypes = {
+    description: PropTypes.string.isRequired,
     image_url: PropTypes.string.isRequired,
     name: PropTypes.array.isRequired,
 }
