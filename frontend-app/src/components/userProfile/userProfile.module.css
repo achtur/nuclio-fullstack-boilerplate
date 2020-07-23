@@ -1,0 +1,64 @@
+.__container{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    text-align: center;
+    background: #ededed;
+    padding: 40px;
+    margin: auto;
+    width: 40%;
+    border-radius: 15px;
+}
+
+.__username{
+    background: lightblue;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 10px 0px 30px 0px;
+}
+
+.__user__info__container{
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.__user__info{
+    background: yellow;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-right: 10px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.__user__info__label{
+    background: pink;
+    font-weight: 500;
+    text-align: right;
+}
+
+.__user__info__content{
+    background: lightgrey;
+    text-align: left;
+}
+
+.__user__bio__container{
+    background: lightgreen;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.__user__bio__label{
+    background: lightgoldenrodyellow;
+    font-weight: 500;
+}
+
+.__user__bio__content{
+    background: red;
+}
+
+.__successMessage{
+    font-weight: bold;
+    margin-top: 25px;
+}

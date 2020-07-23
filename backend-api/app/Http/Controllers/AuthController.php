@@ -15,6 +15,7 @@ class AuthController extends Controller
 
      /**
       // ASK Eudald - Auth en PINS y BOARDS - ciertos métodos?
+      // TUTORIA - Auth en PINS y BOARDS - ciertos métodos?
       * "Podéis añadir esta parte (ABAJO) en vuestros otros controller para proteger ciertos métodos.
       * Probad de proteger el método de crear pins y boards!"
 

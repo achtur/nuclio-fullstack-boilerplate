@@ -10,9 +10,32 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
+
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class PinController extends Controller
 {
+
+    /**
+    // ASK Eudald - Auth en PINS y BOARDS - ciertos métodos?
+    // TUTORIA - Auth en PINS y BOARDS - ciertos métodos?
+    * "Podéis añadir esta parte (ABAJO) en vuestros otros controller para proteger ciertos métodos.
+    * Probad de proteger el método de crear pins y boards!"
+
+    */
+    
+    /*
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['']]);
+    }
+    */
+
+
     /**
      * Show a list of all of the application's pins.
      *

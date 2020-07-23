@@ -1,3 +1,7 @@
+.__spinner {
+    display: flex;
+    justify-content: center;
+}
 
 /** MASONRY USED **/
 /* SOURCE: https://github.com/paulcollett/react-masonry-css */

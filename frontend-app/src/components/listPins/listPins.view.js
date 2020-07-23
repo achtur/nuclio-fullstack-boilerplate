@@ -3,6 +3,8 @@ import styles from './listPins.module.css';
 import PinCard from "../pinCard/pinCard.view";
 import Masonry from 'react-masonry-css'
 
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ListPins = () => {
 
@@ -38,6 +40,11 @@ const ListPins = () => {
     };
 
     return (
+        <>
+        <div className={styles.__spinner}>
+            <FontAwesomeIcon icon={faSpinner} size="2x" spin /> 
+        </div>
+
         <Masonry
         breakpointCols={breakpointColumnsObj}
         className = {styles.__masonry__grid}
@@ -53,12 +60,13 @@ const ListPins = () => {
                 );
             })}
         </Masonry>
+        </>
     );
 };
 
 export default ListPins;
 
-
+// ASK - Spinner - Com fer que aparegui només quan no han arribat els pins?
 
 
 

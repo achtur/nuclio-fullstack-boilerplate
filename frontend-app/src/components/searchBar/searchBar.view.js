@@ -19,4 +19,4 @@ const SearchBar = () => {
 export default SearchBar;
 
 
-/* ASK NavBar SearchBar - src long link in const? */
+/* ASK SearchBar - src long link in const? */

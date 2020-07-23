@@ -4,7 +4,7 @@ import {
 } from "react-router-dom";
 import styles from "./navBar.module.css";
 import SearchBar from "../searchBar/searchBar.view";
-import { BOARD, BOARD_FORM, HOME, LIST_PINS, PINS_FORM } from "../../routes/routes";
+import { BOARD, BOARD_FORM, HOME, LIST_PINS, PINS_FORM, USER_PROFILE } from "../../routes/routes";
 
 
 const NavBar = () => {
@@ -17,6 +17,10 @@ const NavBar = () => {
             </div>
 
             <SearchBar />
+
+            <div className={styles.__navbar__item}>
+                <Link to={USER_PROFILE}>My profile</Link>
+            </div>
 
             <div className={styles.__navbar__item}>
                 <Link to={LIST_PINS}>My pins</Link>

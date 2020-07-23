@@ -34,12 +34,12 @@ const PinForm = () => {
             media_url: mediaUrl,
             board_id: boardId,
         };
-       // const myToken = getToken(); // TODO fetch ME
+       // const myToken = getToken(); // ASK - Auth Pin?
         const options = {
             method: 'POST',
             headers: new Headers({
                 'Content-type': 'application/json',
-              //  'authorization': `Bearer ${myToken.access_token}` // TODO fetch ME
+              //  'authorization': `Bearer ${myToken.access_token}` // ASK - Auth Pin?
             }),
             mode: 'cors',
             body: JSON.stringify(body),
@@ -59,7 +59,7 @@ const PinForm = () => {
                 return Promise.reject(response.status);
             })
             .then(payload => {
-                // setJWT(payload.access_token) // TODO LOGIN
+                // setJWT(payload.access_token) // ASK - Auth Pin?
                 setSuccess('Your data has been submitted');
                 console.log("Data from pin form sent to DB =>", payload);
             })

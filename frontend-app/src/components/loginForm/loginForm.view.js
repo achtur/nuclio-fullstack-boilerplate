@@ -6,7 +6,6 @@ import styles from "./loginForm.module.css";
 import cx from 'classnames';
 
 
-
 const baseUrl = 'http://localhost/api';
 
 const LoginForm = () => {
@@ -14,6 +13,7 @@ const LoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [success, setSuccess] = useState('false');
+    const [loggedIn, setLoggedIn] = useState(false);
 
     const handleChangeEmail = (event) => {
         setEmail(event.target.value);
@@ -33,7 +33,7 @@ const LoginForm = () => {
             method: 'POST',
             headers: new Headers({
                 'Content-type': 'application/json',
-                'authorization': `Bearer ${myToken.access_token}` // ASK fetch ME
+                'authorization': `Bearer ${myToken.access_token}` // ASK COMMENT?
             }),
             mode: 'cors',
             body: JSON.stringify(body),
@@ -52,53 +52,16 @@ const LoginForm = () => {
             .then(payload => {
                 setJWT(payload.access_token) // ASK fetch me
                 setSuccess('You have successfully logged in');
+                setLoggedIn(true)
                 console.log("Email and Password sent to DB =>", payload);
             })
             .catch(error => console.log(error));
     };
 
-// TUTORIA - Peta el logout 
-// FIXME - Peta el logout 
-
-    const logout = () => {
-        const url = `${baseUrl}/auth/logout`;
-        const body = {
-            email: email,
-            password: password,
-        };
-        const myToken = deleteToken(); // TODO fetch ME
-        const options = {
-            method: 'POST',
-            headers: new Headers({
-                'Content-type': 'application/json',
-                'authorization': `Bearer ${myToken.access_token}` // TODO fetch ME
-            }),
-            mode: 'cors',
-            body: JSON.stringify(body),
-        };
-
-        console.log(options.body)
-
-        fetch(url, options)
-            .then(response => {
-                if (response.status === 200 ||
-                    response.status === 201) {
-                    return response.json();
-                }
-                return Promise.reject(response.status);
-            })
-            .then(payload => {
-                setJWT(payload.access_token) // TODO LOGIN
-                setSuccess('You have successfully logged out');
-                console.log("LOGOUT --- Email and Password sent to DB =>", payload);
-            })
-            .catch(error => console.log(error));
-    };
-
-
-
-
-
+const logout = () => {
+    deleteToken();
+    setSuccess("You have successfully logged out. See you next time!"); // TUTORIA - new line?
+}
 
     return (
         // <div className="form-group">
@@ -130,12 +93,15 @@ const LoginForm = () => {
                 </Form.Group>
 
                 <div className={styles.__form__button__container}>
-                    <Button className={ cx("btn btn-dark", styles.__form__button__item) } variant="dark" type="submit" onSubmit={login}>
+                    <Button className={ cx("btn btn-dark", styles.__form__button__item) } variant="dark" type="submit" onClick={login}>
                         Login
                     </Button>
-                    <Button className={ cx("btn btn-danger", styles.__form__button__item) } variant="danger" type="submit" onSubmit={logout}>
+
+                    {loggedIn &&
+                    <Button className={ cx("btn btn-danger", styles.__form__button__item) } variant="danger" type="submit" onClick={logout}>
                         Logout
-                    </Button>
+                    </Button>}
+
                 </div>
             </Form>
 
@@ -148,3 +114,5 @@ const LoginForm = () => {
 }
 
 export default LoginForm;
+
+// ASK - Eudald - onClick or onSubmit? NOT WORKING
