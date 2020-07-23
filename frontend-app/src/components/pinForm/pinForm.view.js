@@ -1,9 +1,8 @@
-import React, { useState, useEffect} from 'react';
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Form'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import cx from 'classnames';
+import React, { useEffect, useState } from 'react';
+import { default as Button, default as Form } from 'react-bootstrap/Form';
 import styles from "./pinForm.module.css";
-import {getToken, setJWT} from "../../utils/localStorage.utils";
 
 
 const baseUrl = 'http://localhost/api';
@@ -93,7 +92,7 @@ const PinForm = () => {
 
         <div className = {styles.__container}>
 
-            <p className={styles.__form__label}>CREATE PIN</p>
+            <p className={styles.__form__title}>CREATE PIN</p>
 
             {
                 /* No clue what this is for --- // TODO: Colt Steele Bootstrap */ 
@@ -127,7 +126,7 @@ const PinForm = () => {
                     <Form.Control as = "select" defaultValue = "Choose a board name..." onChange = {handleChangeBoardId}>
                         {
                             /*
-                            <option>Choose a board name...</option> // ASK Default value?
+                            <option>Choose a board name...</option> // ASK - Default value?
                             */
                         }
 
@@ -139,12 +138,13 @@ const PinForm = () => {
                     </Form.Control>
                 </Form.Group>
 
-                <Button className = "btn btn-primary" variant = "primary" type = "submit" onClick = {submitForm}>Submit</Button>
-                
+                <Button className={ cx("btn btn-dark", styles.__form__button__item) } variant = "dark" type = "submit" onClick = {submitForm}>Submit</Button>
+
             </Form>
 
-            <p>{success}</p>
-
+            <div className={styles.__form__successMessage}>
+                <p>{success}</p>
+            </div>
         </div>
     )
 }

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Form'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import cx from 'classnames';
+import React, { useState } from 'react';
+import { default as Button, default as Form } from 'react-bootstrap/Form';
 import styles from "./boardForm.module.css";
 
 
@@ -102,13 +102,14 @@ const BoardForm = () => {
                     </Form.Control>
                 </Form.Group> // TODO - Dropdown Select User Id */}
 
-                <Button className="btn btn-primary" variant="primary" type="submit" onClick={submitForm} >
+                <Button className={ cx("btn btn-dark", styles.__form__button__item) } variant="dark" type="submit" onClick={submitForm} >
                     Submit
                 </Button>
             </Form>
 
-            <p>{success}</p>
-
+            <div className={styles.__form__successMessage}>
+                <p>{success}</p>
+            </div>
         </div>
     )
 }

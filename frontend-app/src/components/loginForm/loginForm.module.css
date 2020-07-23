@@ -2,7 +2,6 @@
     font-family: 'Montserrat', sans-serif;
     font-size: 12px;
     text-align: center;
-
     background: #ededed;
     padding: 40px;
     margin: auto;
@@ -23,7 +22,7 @@
 .__form__button__container{
     display: flex;
     justify-content: center;
-    margin-top: 25px;
+    margin-top: 30px;
 }
 
 .__form__button__item{

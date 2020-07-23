@@ -66,7 +66,7 @@ const ListPins = () => {
 
 export default ListPins;
 
-// ASK - Spinner - Com fer que aparegui només quan no han arribat els pins?
+// ASK - Spinner - Com fer que aparegui només quan no han arribat els pins? MAYBE || ?
 
 
 

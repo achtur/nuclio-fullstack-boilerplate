@@ -1,9 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import cx from 'classnames';
 import React, { useState } from 'react';
 import { default as Button, default as Form } from 'react-bootstrap/Form';
-import { getToken, deleteToken, setJWT } from "../../utils/localStorage.utils";
+import { deleteToken, getToken, setJWT } from "../../utils/localStorage.utils";
 import styles from "./loginForm.module.css";
-import cx from 'classnames';
 
 
 const baseUrl = 'http://localhost/api';
@@ -67,7 +67,7 @@ const logout = () => {
         // <div className="form-group">
 
         <div className={styles.__container}>
-            <p className={styles.__form__title}>Welcome to Picturest</p>
+            <p className={styles.__form__title}>Welcome to Picturest!</p>
 
             {/* No clue what this is for --- // TODO Ask Bootstrap COLT */}
             {/* SOURCE: https://react-bootstrap.github.io/getting-started/introduction */}

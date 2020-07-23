@@ -1,9 +1,8 @@
 import React from 'react';
 import {
     BrowserRouter as Router,
-
-
-    Redirect, Route,
+    Redirect,
+    Route,
     Switch
 } from "react-router-dom";
 import Board from "./components/board/board.view";
@@ -17,15 +16,14 @@ import { BOARD, BOARD_FORM, HOME, LIST_PINS, PINS_FORM, USER_PROFILE } from "./r
 
 
 
-
 function App() {
     return (
         <Router>
             <NavBar />
 
             <Switch>
-
-                <Route exact path={HOME}>
+                // ASK - Redirect - is this the best way???
+                <Route exact path={HOME}> 
                 {
                 localStorage.getItem("JWT_KEY") ? 
                 <Redirect to={LIST_PINS} />

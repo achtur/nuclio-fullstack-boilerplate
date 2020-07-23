@@ -10,15 +10,20 @@
     display: flex;
     align-items: center;
     /* position: fixed; */         /* TUTORIA - Sticky navbar */
-    background: white;
+    background: #cb2027;
+
     font-family: 'Montserrat', sans-serif;
     font-size: 12px;
     padding: 15px 20px 15px 20px;
-    margin-bottom: 20px;
+    margin-bottom: 60px;
 }
 
 .__navbar__logo {
     margin-right: auto;
+    background: white;
+    border-radius: 95px;
+    border-color: white;
+    border-style: solid;
 }
 
 .__navbar__item {
