@@ -9,9 +9,10 @@
     display: -webkit-box; /* Not needed if autoprefixing */
     display: -ms-flexbox; /* Not needed if autoprefixing */
     display: flex;
-    margin: 20px 150px 20px 150px;
+    margin: auto;
+    /* margin: 20px 150px 20px 150px; */
     /* margin-left: -30px; gutter size offset */
-    width: auto;
+    width: 70%; /* auto */
     align-self: center;
 }
 
@@ -30,7 +31,7 @@
 /* Optional, different gutter size on mobile */
 @media (max-width: 1000px) {
     .__masonry__grid {
-        margin: 20px 70px 20px 70px;
+        /* margin: 20px 70px 20px 70px; */
         /* margin-left: -15px; /* gutter size offset */
     }
     .__masonry__grid__column {

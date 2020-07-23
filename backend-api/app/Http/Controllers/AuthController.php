@@ -12,6 +12,13 @@ class AuthController extends Controller
      *
      * @return void
      */
+
+     /**
+      // ASK Eudald - Auth en PINS y BOARDS - ciertos métodos?
+      * "Podéis añadir esta parte (ABAJO) en vuestros otros controller para proteger ciertos métodos.
+      * Probad de proteger el método de crear pins y boards!"
+
+      */
     public function __construct()
     {
         $this->middleware('auth:api', ['except' => ['login']]);

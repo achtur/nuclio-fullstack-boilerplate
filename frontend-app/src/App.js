@@ -10,7 +10,9 @@ import Board from "./components/board/board.view";
 import BoardForm from "./components/boardForm/boardForm.view";
 import ListPins from "./components/listPins/listPins.view";
 import PinForm from "./components/pinForm/pinForm.view";
-import SearchBar from "./components/searchBar/searchBar.view";
+
+import NavBar from "./components/navBar/navBar.view";
+
 import Home from "./pages/home/home.view";
 import { BOARD, BOARD_FORM, HOME, LIST_PINS, PINS_FORM } from "./routes/routes";
 
@@ -19,33 +21,7 @@ import { BOARD, BOARD_FORM, HOME, LIST_PINS, PINS_FORM } from "./routes/routes";
 function App() {
     return (
         <Router>
-            <div>
-                <header className={styles.__navbar}>
-
-                    <div className={styles.__navbar__logo}>
-                        <Link to={HOME}><img src={"https://seeklogo.com/images/P/pinterest-logo-8561DDA2E1-seeklogo.com.png"} alt='Logo' width="22"/></Link>
-                    </div>
-
-                    <SearchBar />
-
-                    <div className={styles.__navbar__item}>
-                        <Link to={LIST_PINS}>My pins</Link>
-                    </div>
-
-                    <div className={styles.__navbar__item}>
-                        <Link to={BOARD}>My board #id</Link>
-                    </div>
-
-                    <div className={styles.__navbar__item}>
-                        <Link to={PINS_FORM}>Create pins</Link>
-                    </div>
-
-                    <div className={styles.__navbar__item}>
-                        <Link to={BOARD_FORM}>Create boards</Link>
-                    </div>
-
-                </header>
-            </div>
+            <NavBar />
             <Switch>
                 <Route exact path={HOME}>
                     <Home />
@@ -91,6 +67,6 @@ SOURCE 2: https://medium.com/@pioul/modular-css-with-react-61638ae9ea3e#.re1pdcz
 "A CSS Module is a CSS file in which all class names and animation names are scoped locally by default."
 */
 
-/* ASK - NavBar - should it be a separate component? Tree structure...? >>> Router (Link + Switch)?*/
+/* ASK - NavBar - should it be a separate component? Tree structure...? >>> Router (Link + Switch)? SLACK*/
 
 /* ASK - backend-api/docker-compose (1).yml ??? */

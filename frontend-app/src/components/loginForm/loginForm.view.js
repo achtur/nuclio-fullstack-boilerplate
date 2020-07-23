@@ -1,7 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 import { default as Button, default as Form } from 'react-bootstrap/Form';
+import { getToken, deleteToken, setJWT } from "../../utils/localStorage.utils";
 import styles from "./loginForm.module.css";
+import cx from 'classnames';
+
 
 
 const baseUrl = 'http://localhost/api';
@@ -19,19 +22,56 @@ const LoginForm = () => {
         setPassword(event.target.value);
     }
 
-    const submitForm = () => {
+    const login = () => {
         const url = `${baseUrl}/auth/login`;
         const body = {
             email: email,
             password: password,
         };
-        const myToken = getToken(); //TODO fetch ME
+        const myToken = getToken(); // ASK fetch ME
+        const options = {
+            method: 'POST',
+            headers: new Headers({
+                'Content-type': 'application/json',
+                'authorization': `Bearer ${myToken.access_token}` // ASK fetch ME
+            }),
+            mode: 'cors',
+            body: JSON.stringify(body),
+        };
+
+        console.log(options.body)
+
+        fetch(url, options)
+            .then(response => {
+                if (response.status === 200 ||
+                    response.status === 201) {
+                    return response.json();
+                }
+                return Promise.reject(response.status);
+            })
+            .then(payload => {
+                setJWT(payload.access_token) // ASK fetch me
+                setSuccess('You have successfully logged in');
+                console.log("Email and Password sent to DB =>", payload);
+            })
+            .catch(error => console.log(error));
+    };
+
+// TUTORIA - Peta el logout 
+// FIXME - Peta el logout 
+
+    const logout = () => {
+        const url = `${baseUrl}/auth/logout`;
+        const body = {
+            email: email,
+            password: password,
+        };
+        const myToken = deleteToken(); // TODO fetch ME
         const options = {
             method: 'POST',
             headers: new Headers({
                 'Content-type': 'application/json',
                 'authorization': `Bearer ${myToken.access_token}` // TODO fetch ME
-
             }),
             mode: 'cors',
             body: JSON.stringify(body),
@@ -49,19 +89,24 @@ const LoginForm = () => {
             })
             .then(payload => {
                 setJWT(payload.access_token) // TODO LOGIN
-                setSuccess('You have been succesfully logged in');
-                console.log("Email and Password sent to DB =>", payload);
+                setSuccess('You have successfully logged out');
+                console.log("LOGOUT --- Email and Password sent to DB =>", payload);
             })
             .catch(error => console.log(error));
     };
+
+
+
+
+
 
     return (
         // <div className="form-group">
 
         <div className={styles.__container}>
-            <p className={styles.__form__label}>Welcome to Picturest</p>
+            <p className={styles.__form__title}>Welcome to Picturest</p>
 
-            {/* No clue what this is for --- // TODO Ask Bootstrap */}
+            {/* No clue what this is for --- // TODO Ask Bootstrap COLT */}
             {/* SOURCE: https://react-bootstrap.github.io/getting-started/introduction */}
 
             <link
@@ -84,16 +129,19 @@ const LoginForm = () => {
                     <Form.Control placeholder="Your Password Here" onChange={handleChangePassword}/>
                 </Form.Group>
 
-                <Button className="btn btn-success" variant="primary" type="submit" onClick={submitForm} align="center">
-                    Login
-                </Button>
-
-                <Button className="btn btn-danger" variant="danger" type="submit" onClick={submitForm} align="center">
-                    Logout
-                </Button>
+                <div className={styles.__form__button__container}>
+                    <Button className={ cx("btn btn-dark", styles.__form__button__item) } variant="dark" type="submit" onSubmit={login}>
+                        Login
+                    </Button>
+                    <Button className={ cx("btn btn-danger", styles.__form__button__item) } variant="danger" type="submit" onSubmit={logout}>
+                        Logout
+                    </Button>
+                </div>
             </Form>
 
-            <p>{success}</p>
+            <div className={styles.__form__successMessage}>
+                <p>{success}</p>
+            </div>
 
         </div>
     )
