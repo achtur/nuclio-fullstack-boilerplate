@@ -5,6 +5,7 @@ import {
     Route,
     Switch
 } from "react-router-dom";
+import './assets/css/fonts.css';
 import Board from "./components/board/board.view";
 import BoardForm from "./components/boardForm/boardForm.view";
 import ListPins from "./components/listPins/listPins.view";
