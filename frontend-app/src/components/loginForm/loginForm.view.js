@@ -28,12 +28,12 @@ const LoginForm = () => {
             email: email,
             password: password,
         };
-        const myToken = getToken(); // ASK fetch ME
+        // const myToken = getToken(); // ASK fetch ME
         const options = {
             method: 'POST',
             headers: new Headers({
                 'Content-type': 'application/json',
-                'authorization': `Bearer ${myToken.access_token}` // ASK COMMENT?
+                // 'authorization': `Bearer ${myToken.access_token}` // ASK COMMENT?
             }),
             mode: 'cors',
             body: JSON.stringify(body),

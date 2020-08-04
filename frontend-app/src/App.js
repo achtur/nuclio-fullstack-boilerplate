@@ -1,21 +1,15 @@
 import React from 'react';
-import {
-    BrowserRouter as Router,
-    Redirect,
-    Route,
-    Switch
-} from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import './App.css';
 import './assets/css/fonts.css';
-import Board from "./components/board/board.view";
-import BoardForm from "./components/boardForm/boardForm.view";
-import ListPins from "./components/listPins/listPins.view";
-import NavBar from "./components/navBar/navBar.view";
-import PinForm from "./components/pinForm/pinForm.view";
-import UserProfile from "./components/userProfile/userProfile.view";
-import Home from "./pages/home/home.view";
-import { BOARD, BOARD_FORM, HOME, LIST_PINS, PINS_FORM, USER_PROFILE } from "./routes/routes";
-
-
+import Board from './components/board/board.view';
+import BoardForm from './components/boardForm/boardForm.view';
+import ListPins from './components/listPins/listPins.view';
+import NavBar from './components/navBar/navBar.view';
+import PinForm from './components/pinForm/pinForm.view';
+import UserProfile from './components/userProfile/userProfile.view';
+import Home from './pages/home/home.view';
+import { BOARD, BOARD_FORM, HOME, LIST_PINS, PINS_FORM, USER_PROFILE } from './routes/routes';
 
 function App() {
     return (
@@ -23,16 +17,10 @@ function App() {
             <NavBar />
 
             <Switch>
-                // ASK - Redirect - is this the best way???
-                <Route exact path={HOME}> 
-                {
-                localStorage.getItem("JWT_KEY") ? 
-                <Redirect to={LIST_PINS} />
-                :        
-                <Home />
-                }
+                {/* ASK - Redirect - is this the best way??? */}
+                <Route exact path={HOME}>
+                    {localStorage.getItem('JWT_KEY') ? <Redirect to={LIST_PINS} /> : <Home />}
                 </Route>
-
                 <Route exact path={USER_PROFILE}>
                     <UserProfile />
                 </Route>
@@ -55,12 +43,34 @@ function App() {
 
 export default App;
 
-
 /* SOURCE React Router: https://reactrouter.com/web/guides/quick-start */
 
-/* SOURCE Append 2 classNames:
-** import cx from 'classnames';
-** Ex: <div className={ cx(styles.__navbar__title, styles.__navbar__item) }>Blablabla</div>
+/* NOTE: LOCAL and GLOBAL classes - HOW TO
+
+1) Use a LOCAL className
+
+    import styles from "./navBar.module.css";
+
+    Ex: <div className={styles.__navbar__item}>
+
+
+2) Use a GLOBAL className
+
+    import './App.css'; (SOLO EN APP YA ES SUFICIENTE, PASA A TODOS LOS HIJOS!)
+
+    Ex: <p className='warningglobalstyle'>WARNING GLOBAL en PINFORM</p> 
+
+
+3) APPEND 2 classNames
+
+    import cx from 'classnames';
+
+    Ex 1 (two LOCAL classes):
+        <div className={ cx(styles.__navbar__title, styles.__navbar__item) }>Blablabla</div>
+
+    Ex 2 (one GLOBAL and one LOCAL class):
+        <p className={ cx('warningglobalstyle', styles.__warning_local_style)) }>Blablabla</p>
+
 */
 
 /* ASK - CSS for App - import styles

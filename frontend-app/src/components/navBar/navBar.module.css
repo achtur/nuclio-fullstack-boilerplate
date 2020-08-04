@@ -10,7 +10,8 @@
     display: flex;
     align-items: center;
     /* position: fixed; */         /* TUTORIA - Sticky navbar */
-    background: #cb2027;
+    /* background: #cb2027; */
+    background: lightgrey;
 
     font-family: 'Montserrat', sans-serif;
     font-size: 12px;
