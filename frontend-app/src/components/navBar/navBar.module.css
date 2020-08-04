@@ -10,8 +10,7 @@
     display: flex;
     align-items: center;
     /* position: fixed; */         /* TUTORIA - Sticky navbar */
-    /* background: #cb2027; */
-    background: lightgrey;
+    background: #cb2027;
 
     font-family: 'Montserrat', sans-serif;
     font-size: 12px;
@@ -35,12 +34,12 @@
     vertical-align: middle;
     text-decoration: none;
     border-radius: 95px;
-    background: white;
+    background: #cb2027;
 }
 
 .__navbar__item a{
     text-decoration: none;
-    color: black;
+    color: white;
     display: block;
     padding: 6px 10px 10px 10px;  
 }
@@ -50,6 +49,6 @@
     height: 30px;
     text-decoration: none;
     border-radius: 95px;
-    background:#ededed;
+    background:white;
     color: black;
 }
