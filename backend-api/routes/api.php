@@ -80,11 +80,8 @@ Route::group([
     Route::get('', 'PinController@all');
     Route::get('{id}', 'PinController@getById');
     Route::get('board/{boardId}', 'PinController@getByBoard');
-
     Route::post('', 'PinController@create');
-
     Route::put('{id}', 'PinController@update');
-
     Route::delete('{id}', 'PinController@delete');
 });
 */

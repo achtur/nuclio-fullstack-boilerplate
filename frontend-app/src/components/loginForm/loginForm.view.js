@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import cx from 'classnames';
 import React, { useState } from 'react';
 import { default as Button, default as Form } from 'react-bootstrap/Form';
-import { deleteToken, getToken, setJWT } from "../../utils/localStorage.utils";
+import { deleteToken, setJWT } from "../../utils/localStorage.utils";
 import styles from "./loginForm.module.css";
 
 
@@ -52,7 +52,7 @@ const LoginForm = () => {
             .then(payload => {
                 setJWT(payload.access_token) // ASK fetch me
                 setSuccess('You have successfully logged in');
-                setLoggedIn(true)
+                setLoggedIn(true);
                 console.log("Email and Password sent to DB =>", payload);
             })
             .catch(error => console.log(error));

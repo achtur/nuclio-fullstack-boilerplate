@@ -65,7 +65,7 @@ class User extends Authenticatable implements JWTSubject
      */
 
     /**
-     * ASK: email_verified_at - who is in charge?
+     * // ASK: email_verified_at - who is in charge?
     */ 
     
     protected $casts = [

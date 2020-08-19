@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import styles from './listPins.module.css';
-import PinCard from "../pinCard/pinCard.view";
-import Masonry from 'react-masonry-css'
-
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useEffect, useState } from 'react';
+import Masonry from 'react-masonry-css';
+import PinCard from "../pinCard/pinCard.view";
+import styles from './listPins.module.css';
+
 
 const ListPins = () => {
 
@@ -66,7 +66,7 @@ const ListPins = () => {
 
 export default ListPins;
 
-// ASK - Spinner - Com fer que aparegui només quan no han arribat els pins? MAYBE || ?
+// ASK - Spinner - Com fer que aparegui només quan no han arribat els pins? MAYBE un ternari ?
 
 
 
