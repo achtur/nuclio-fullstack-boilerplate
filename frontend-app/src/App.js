@@ -19,7 +19,7 @@ function App() {
             <Switch>
                 {/* ASK - Redirect - is this the best way??? */}
                 <Route exact path={HOME}>
-                      {localStorage.getItem('JWT_KEY') ? <Redirect to={LIST_PINS} /> : <Home />}
+                    {localStorage.getItem('JWT_KEY') ? <Redirect to={LIST_PINS} /> : <Home />}
                 </Route>
                 <Route exact path={USER_PROFILE}>
                     <UserProfile />

@@ -79,7 +79,7 @@ class PinController extends Controller
      *
      * @param $query
      * @return JsonResponse
-     * // FIXME: Esta función está deprecada. Se crea un SearchController instead:
+     * // FIXME: Esta función está deprecada. Se crea un SearchController y derivados instead:
      * SearchController.php
      * SearchPinServiceProvider.php
      * SearchPinService.php
