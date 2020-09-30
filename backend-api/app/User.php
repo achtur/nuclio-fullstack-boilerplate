@@ -14,6 +14,7 @@ class User extends Authenticatable implements JWTSubject
 
     /**
      * Get the boards for the given user.
+     * It says: One user has many boards
      */
     public function boards()
     {
@@ -65,9 +66,9 @@ class User extends Authenticatable implements JWTSubject
      */
 
     /**
-     * ASK: email_verified_at - who is in charge?
-    */ 
-    
+     * // ASK: email_verified_at - who is in charge?
+    */
+
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];

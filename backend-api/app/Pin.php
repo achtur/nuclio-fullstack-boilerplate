@@ -40,20 +40,7 @@ class Pin extends Authenticatable implements JWTSubject
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
     /**
      * Get the board that owns the pin.
      * It says: One pin belongs to ONLY one board (we set this restriction)

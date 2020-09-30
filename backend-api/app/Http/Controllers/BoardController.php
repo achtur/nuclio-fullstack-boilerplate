@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Log;
 class BoardController extends Controller
 {
     /**
-     * Show a list of all of the application's boards.
+     * Show a list of all of the application's boards
+     * with their corresponding pins
      *
      * @return JsonResponse
      */

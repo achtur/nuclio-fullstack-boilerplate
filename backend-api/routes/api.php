@@ -80,11 +80,8 @@ Route::group([
     Route::get('', 'PinController@all');
     Route::get('{id}', 'PinController@getById');
     Route::get('board/{boardId}', 'PinController@getByBoard');
-
     Route::post('', 'PinController@create');
-
     Route::put('{id}', 'PinController@update');
-
     Route::delete('{id}', 'PinController@delete');
 });
 */
@@ -100,8 +97,13 @@ Route::group([
 */
 
 /* get */ //TODO - Are these really generic routes... should there be only ONE search route for P and B?
+
+// OLD
 Route::get('pins/search/{query}', 'PinController@search');
 Route::get('boards/search/{query}', 'BoardController@search');
+
+// NEW!
+Route::get('search/{query}', 'SearchController@search');
 
 
 /*

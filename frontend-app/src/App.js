@@ -58,7 +58,7 @@ export default App;
 
     import './App.css'; (SOLO EN APP YA ES SUFICIENTE, PASA A TODOS LOS HIJOS!)
 
-    Ex: <p className='warningglobalstyle'>WARNING GLOBAL en PINFORM</p> 
+    <button className="button button--blue">My blue button</button>
 
 
 3) APPEND 2 classNames
@@ -69,7 +69,7 @@ export default App;
         <div className={ cx(styles.__navbar__title, styles.__navbar__item) }>Blablabla</div>
 
     Ex 2 (one GLOBAL and one LOCAL class):
-        <p className={ cx('warningglobalstyle', styles.__warning_local_style)) }>Blablabla</p>
+        <p className={ cx('warningglobalstyle', styles.__warning_local_style) }>Blablabla</p>
 
 */
 

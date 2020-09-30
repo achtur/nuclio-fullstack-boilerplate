@@ -27,7 +27,7 @@ class PinController extends Controller
     * Probad de proteger el método de crear pins y boards!"
 
     */
-    
+
 
     public function __construct()
     {
@@ -79,7 +79,15 @@ class PinController extends Controller
      *
      * @param $query
      * @return JsonResponse
+     * // FIXME: Esta función está deprecada. Se crea un SearchController instead:
+     * SearchController.php
+     * SearchPinServiceProvider.php
+     * SearchPinService.php
+     *
+     * Comprovar que funcione esta antigua una vez cree de nuevo la DB y borrarla (?)
+     * cuando la nueva del Search funcione
      */
+
     public function search($query)
     {
         Log::info('Retrieving all pins related to ->' .$query);
